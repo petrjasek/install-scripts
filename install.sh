@@ -24,12 +24,15 @@ cp $SCRIPTS_PATH/files/daemon /etc/init.d/superdesk-content-api
 update-rc.d superdesk defaults 90
 update-rc.d superdesk-content-api defaults 90
 
-sh /opt/build/superdesk/scripts/container_setup.sh
+sh $SCRIPTS_PATH/container_setup.sh
 
+nginx -s reload
 /etc/init.d/superdesk start
 /etc/init.d/superdesk-content-api start
 
+tput setaf 2
 echo "Installation complete! Open in a bowser the address: http://your_server_address/"
-echo "Default credentials:"
+echo "To login use default credentials:"
 echo "Login: admin"
 echo "Password: superdesk"
+tput setaf 7
