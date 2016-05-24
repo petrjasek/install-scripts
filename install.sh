@@ -27,6 +27,7 @@ update-rc.d superdesk-content-api defaults 90
 sh $SCRIPTS_PATH/container_setup.sh
 
 nginx -s reload
+/etc/init.d/exim4 restart
 /etc/init.d/superdesk start
 /etc/init.d/superdesk-content-api start
 
