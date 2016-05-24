@@ -4,6 +4,7 @@
 2. Start command from command shell:
 
 ```curl https://raw.githubusercontent.com/superdesk/install-scripts/master/install.sh | sudo sh```
+
 3. Wait for couple minutes.
 4. After installation Superdesk instance is installed and ready to use.
 
