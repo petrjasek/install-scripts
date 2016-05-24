@@ -44,4 +44,4 @@ virtualenv env
 pip3 install -U -r /opt/superdesk-content-api/requirements.txt
 cp -r /mnt/superdesk-content-api/. /opt/superdesk-content-api/
 
-find /root/. -type d -name '.[^.]*' -prune -exec rm -r {} +
+#find /root/. -type d -name '.[^.]*' -prune -exec rm -r {} +
