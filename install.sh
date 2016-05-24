@@ -9,8 +9,8 @@ git clone https://github.com/superdesk/install-scripts.git $SCRIPTS_PATH
 git clone https://github.com/superdesk/superdesk.git /mnt/superdesk
 git clone https://github.com/superdesk/superdesk-content-api.git /mnt/superdesk-content-api
 
-$SCRIPTS_PATH/container_services.sh
-$SCRIPTS_PATH/container_app.sh
+sh $SCRIPTS_PATH/container_services.sh
+sh $SCRIPTS_PATH/container_app.sh
 
 cp $SCRIPTS_PATH/files/nginx/* /etc/nginx/conf.d/
 cp $SCRIPTS_PATH/files/exim4/* /etc/exim4/
@@ -24,7 +24,7 @@ cp $SCRIPTS_PATH/files/daemon /etc/init.d/superdesk-content-api
 update-rc.d superdesk defaults 90
 update-rc.d superdesk-content-api defaults 90
 
-/opt/build/superdesk/scripts/container_setup.sh
+sh /opt/build/superdesk/scripts/container_setup.sh
 
 /etc/init.d/superdesk start
 /etc/init.d/superdesk-content-api start
