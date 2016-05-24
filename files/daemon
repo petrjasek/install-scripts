@@ -1,0 +1,77 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          Superdesk
+# Required-Start:    $remote_fs $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Starts superdesk
+# Description:       Starts superdesk using daemon
+### END INIT INFO
+
+name=$(basename "$0"|sed 's/^S[0-9]*//')
+command="/bin/sh"
+command_args="start.sh"
+daemon="/usr/bin/daemon"
+daemon_start_args="-i -A 2 -L 10"
+pidfiles="/var/run"
+user=""
+chroot=""
+chdir="/opt/$name"
+umask=""
+stdout="daemon.info"
+stderr="daemon.err"
+
+case "$1" in  
+    start)
+        # This if statement isn't strictly necessary but it's user friendly
+        if "$daemon" --running --name "$name" --pidfiles "$pidfiles"
+        then
+            echo "$name is already running."
+        else
+            echo -n "Starting $name..."
+            "$daemon" --respawn $daemon_start_args \
+                --name "$name" --pidfiles "$pidfiles" \
+                ${user:+--user $user} ${chroot:+--chroot $chroot} \
+                ${chdir:+--chdir $chdir} ${umask:+--umask $umask} \
+                ${stdout:+--stdout $stdout} ${stderr:+--stderr $stderr} \
+                -- \
+                "$command" $command_args
+            echo done.
+        fi
+        ;;
+
+    stop)
+        # This if statement isn't strictly necessary but it's user friendly
+        if "$daemon" --running --name "$name" --pidfiles "$pidfiles"
+        then
+            echo -n "Stopping $name..."
+            "$daemon" --stop --name "$name" --pidfiles "$pidfiles"
+            echo done.
+        else
+            echo "$name is not running."
+        fi
+        ;;
+
+    restart|reload)
+        if "$daemon" --running --name "$name" --pidfiles "$pidfiles"
+        then
+            echo -n "Restarting $name..."
+            "$daemon" --restart --name "$name" --pidfiles "$pidfiles"
+            echo done.
+        else
+            echo "$name is not running."
+            exit 1
+        fi
+        ;;
+
+    status)
+        "$daemon" --running --name "$name" --pidfiles "$pidfiles" --verbose
+        ;;
+
+    *)
+        echo "usage: $0 <start|stop|restart|reload|status>" >&2
+        exit 1
+esac
+
+exit 0
