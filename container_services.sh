@@ -18,10 +18,7 @@ echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" 
 add-apt-repository -y ppa:chris-lea/redis-server
 
 #nginx
-cd /tmp
-wget http://nginx.org/keys/nginx_signing.key
-apt-key add nginx_signing.key
-unlink ./nginx_signing.key
+wget -qO - http://nginx.org/keys/nginx_signing.key | sudo apt-key add -
 echo "deb http://nginx.org/packages/ubuntu/ trusty nginx" > /etc/apt/sources.list.d/nginx.list
 
 #install
