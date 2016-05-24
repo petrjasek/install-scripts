@@ -1,9 +1,5 @@
 #!/bin/sh
 
-echo -n 'wait for elasticsearch.'
-while ! curl -sfo /dev/null 'http://127.0.0.1:9200/'; do echo -n '.' && sleep 1; done
-echo "done"
-
 cd /opt/superdesk
 . env/bin/activate
 honcho run python3 manage.py app:initialize_data
