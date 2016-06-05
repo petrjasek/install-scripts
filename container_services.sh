@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DEBIAN_FRONTEND=noninteractive
-apt-get autoremove -y --purge ntpdate
+apt-get -y autoremove --purge ntpdate nginx
 apt-get update
 apt-get -y dist-upgrade
 apt-get -y install wget exim4 software-properties-common
