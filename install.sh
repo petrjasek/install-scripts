@@ -36,4 +36,4 @@ echo "Installation complete! Open in a bowser the address: http://your_server_ad
 echo "To login use default credentials:"
 echo "Login: admin"
 echo "Password: superdesk"
-tput setaf 7
+tput setaf 0
