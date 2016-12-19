@@ -9,3 +9,9 @@
 
 ###### Minimal requirements:
 2GB RAM, 4GB Free space
+
+
+## Updating Superdesk
+
+1. Run command:
+```curl https://raw.githubusercontent.com/superdesk/install-scripts/master/update.sh | sudo sh```
